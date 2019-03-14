@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MHGoldenJuteApp.Models.EntityModel
+namespace MHGoldenJuteApp.Models
 {
     public class Item
     {
@@ -17,7 +17,7 @@ namespace MHGoldenJuteApp.Models.EntityModel
         public int ReOrderLevel { get; set; }
         public double ReOrderQuantity { get; set; }
         public int ItemType { get; set; }
-        public string imageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

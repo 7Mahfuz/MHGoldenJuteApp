@@ -14,7 +14,7 @@ namespace MHGoldenJuteApp.DAL
              Connection.Open();
             try
             {
-                Query = "insert into Party('@PartyType','@PartyName','@Person','@Address','@PhoneNo','@MobileNo','@Email','@OpenBalance','@ImgUrl')";
+                Query = "insert into Party values('@PartyType','@PartyName','@Person','@Address','@PhoneNo','@MobileNo','@Email','@OpenBalance','@ImgUrl')";
                 Command = new SqlCommand(Query, Connection);
                 Command.Parameters.Clear();
                 Command.Parameters.AddWithValue("PartyName", aParty.PartyName);

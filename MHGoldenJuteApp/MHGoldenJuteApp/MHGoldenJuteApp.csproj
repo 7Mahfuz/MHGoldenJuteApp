@@ -264,6 +264,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ItemAccesss.cs" />
     <Compile Include="DAL\PartyAccess.cs" />
     <Compile Include="DAL\UserAccess.cs" />
     <Compile Include="DAL\SQL.cs" />
