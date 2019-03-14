@@ -264,6 +264,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\PartyAccess.cs" />
     <Compile Include="DAL\UserAccess.cs" />
     <Compile Include="DAL\SQL.cs" />
     <Compile Include="Default.aspx.cs">
@@ -276,6 +277,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntityModel\Item.cs" />
+    <Compile Include="Models\EntityModel\ItemGroup.cs" />
+    <Compile Include="Models\EntityModel\Party.cs" />
     <Compile Include="Models\EntityModel\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\OtherModel\SessionKeeper.cs" />
