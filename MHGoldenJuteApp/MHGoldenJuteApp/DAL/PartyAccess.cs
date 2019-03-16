@@ -105,5 +105,50 @@ namespace MHGoldenJuteApp.DAL
             if (result > 0) return true;
             else return false;
         }
+
+        public int UpdateAParty(Party aParty)
+        {
+            Connection.Open();
+            try
+            {
+                Query = "Update Party set PartyType='@PartyType', PartyName='@PartyName',Person='@Person',"+
+                "Address='@Address',PhoneNo='@PhoneNo',MobileNo='@MobileNo',Email='@Email',OpeningBalance='@OpenBalance',"+
+                "ImageUrl= '@ImgUrl' where PartyId=@PartyID";
+                Command = new SqlCommand(Query, Connection);
+                Command.Parameters.Clear();
+                Command.Parameters.AddWithValue("PartyName", aParty.PartyName);
+                Command.Parameters.AddWithValue("PartyTyp", aParty.PartyType);
+                Command.Parameters.AddWithValue("Email", aParty.Email);
+                Command.Parameters.AddWithValue("Person", aParty.ContactPerson);
+                Command.Parameters.AddWithValue("Address", aParty.Address);
+                Command.Parameters.AddWithValue("PhoneNo", aParty.PhoneNo);
+                Command.Parameters.AddWithValue("MobileNo", aParty.MobileNo);
+                Command.Parameters.AddWithValue("OpenBalance", aParty.OpeningBalance);
+                Command.Parameters.AddWithValue("ImgUrl", aParty.ImageUrl);
+                Command.Parameters.AddWithValue("PartyId", aParty.PartyType);
+                RowCount = Command.ExecuteNonQuery();
+            }
+            catch { RowCount = 2; }
+
+            Connection.Close();
+            return RowCount;
+        }
+
+        public int DeleteById(int partyId)
+        {
+            Connection.Open();
+            try
+            {
+                Query = "Delete from party where PartyId=@PartyId";
+                Command = new SqlCommand(Query, Connection);
+                Command.Parameters.Clear();
+                Command.Parameters.AddWithValue("PartyId", partyId);                
+                RowCount = Command.ExecuteNonQuery();
+            }
+            catch { RowCount = 2; }
+
+            Connection.Close();
+            return RowCount;
+        }
     }
 }

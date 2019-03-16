@@ -255,6 +255,8 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BLL\ItemManager.cs" />
+    <Compile Include="BLL\PartyManager.cs" />
     <Compile Include="BLL\User\EncryptDecrypt.cs" />
     <Compile Include="BLL\User\UserHandler.cs" />
     <Compile Include="Contact.aspx.cs">

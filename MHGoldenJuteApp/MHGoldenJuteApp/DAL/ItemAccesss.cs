@@ -8,17 +8,16 @@ using System.Data.SqlClient;
 namespace MHGoldenJuteApp.DAL
 {
     public class ItemAccesss:SQL
-    {
-        
+    {        
         public int Save(Item aItem)
         {
             Connection.Open();
             try
             {
-                Query = "insert into Party values('@ItemGroupId','@ItemCode','@ItemName','@Department','@Unit','@SalesPrice','@ReOderlvl','@ReOrderQnt','@ItemType','@ImgUrl')";
+                Query = "insert into Item values('@ItemGroupId','@ItemCode','@ItemName','@Department','@Unit','@SalesPrice','@ReOderlvl','@ReOrderQnt','@ItemType','@ImgUrl')";
                 Command = new SqlCommand(Query, Connection);
                 Command.Parameters.Clear();
-                Command.Parameters.AddWithValue("PartyName", aItem.ItemGroupId);
+                Command.Parameters.AddWithValue("ItemName", aItem.ItemGroupId);
                 Command.Parameters.AddWithValue("ItemCode", aItem.ItemCode);
                 Command.Parameters.AddWithValue("ItemName", aItem.ItemName);
                 Command.Parameters.AddWithValue("Department", aItem.Department);
@@ -47,7 +46,7 @@ namespace MHGoldenJuteApp.DAL
             while (Reader.Read())
             {
                 Item aItem=new Item();
-                aItem.ItemId = (int)Reader["PartyId"];
+                aItem.ItemId = (int)Reader["ItemId"];
                 aItem.ItemGroupId = (int)Reader["ItemGroupId"];
                 aItem.ItemCode = Reader["ItemCode"].ToString();
                 aItem.ItemName = Reader["ItemName"].ToString();
@@ -64,6 +63,64 @@ namespace MHGoldenJuteApp.DAL
             Reader.Close();
             Connection.Close();
             return listOfItem;
+        }
+
+        public Item GetAItemById(int itemId)
+        {
+            Connection.Open();
+            Item aItem = new Item();
+            Query = "Select * from Item where ItemId=@ItemId";
+            Command = new SqlCommand(Query, Connection);
+            Command.Parameters.Clear();
+            Command.Parameters.AddWithValue("ItemId", itemId);
+
+            Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                aItem.ItemId = (int)Reader["ItemId"];
+                aItem.ItemGroupId = (int)Reader["ItemGroupId"];
+                aItem.ItemCode = Reader["ItemCode"].ToString();
+                aItem.ItemName = Reader["ItemName"].ToString();
+                aItem.Department = Reader["Department"].ToString();
+                aItem.ItemType = (int)Reader["ItemType"];
+                aItem.ReOrderLevel = (int)Reader["ReOrderLevel"];
+                aItem.ReOrderQuantity = (double)Reader["ReOrderQuantity"];
+                aItem.ImageUrl = Reader["ImageUrl"].ToString();
+                aItem.SalesPrice = (double)Reader["SalesPrice"];
+                aItem.Unit = Reader["Unit"].ToString();
+
+            }
+            Reader.Close();
+            Connection.Close();
+
+            return aItem;
+        }
+
+        public int UpdateAItemById(Item aItem)
+        {
+            Connection.Open();
+            try
+            {
+                Query = "Update Item set ItemGroupId='@ItemGroupId',ItemCode='@ItemCode',ItemName='@ItemName',Department='@Department',Unit='@Unit',SalesPrice='@SalesPrice',ReOrderLevel='@ReOderlvl',ReOrderLevel='@ReOrderQnt',ItemType='@ItemType',ImageUrl='@ImgUrl')";
+                Command = new SqlCommand(Query, Connection);
+                Command.Parameters.Clear();
+                Command.Parameters.AddWithValue("ItemName", aItem.ItemGroupId);
+                Command.Parameters.AddWithValue("ItemCode", aItem.ItemCode);
+                Command.Parameters.AddWithValue("ItemName", aItem.ItemName);
+                Command.Parameters.AddWithValue("Department", aItem.Department);
+                Command.Parameters.AddWithValue("Unit", aItem.Unit);
+                Command.Parameters.AddWithValue("SalesPrice", aItem.SalesPrice);
+                Command.Parameters.AddWithValue("ReOderlvl", aItem.ReOrderLevel);
+                Command.Parameters.AddWithValue("ReOrderQnt", aItem.ReOrderQuantity);
+                Command.Parameters.AddWithValue("ItemType", aItem.ItemType);
+                Command.Parameters.AddWithValue("ImgUrl", aItem.ImageUrl);
+
+                RowCount = Command.ExecuteNonQuery();
+            }
+            catch { RowCount = 2; }
+
+            Connection.Close();
+            return RowCount;
         }
     }
 }
