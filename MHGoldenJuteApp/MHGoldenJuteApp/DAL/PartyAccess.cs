@@ -45,8 +45,8 @@ namespace MHGoldenJuteApp.DAL
             
             Reader = Command.ExecuteReader();
             while (Reader.Read())
-            {                
-                aParty.PartyId= (int)Reader["PartyId"];
+            {
+                aParty.PartyId = (Int64)Reader["PartyId"];
                 aParty.PartyName = Reader["PartyName"].ToString();
                 aParty.PartyType = Reader["PartyType"].ToString();
                 aParty.ContactPerson = Reader["ContactPerson"].ToString();
@@ -74,7 +74,7 @@ namespace MHGoldenJuteApp.DAL
             while (Reader.Read())
             {
                 Party aParty = new Party();
-                aParty.PartyId = (int)Reader["PartyId"];
+                aParty.PartyId = (Int64)Reader["PartyId"];
                 aParty.PartyName = Reader["PartyName"].ToString();
                 aParty.PartyType = Reader["PartyType"].ToString();
                 aParty.ContactPerson = Reader["ContactPerson"].ToString();
@@ -132,7 +132,7 @@ namespace MHGoldenJuteApp.DAL
 
             Connection.Close();
             return RowCount;
-        }
+        }               
 
         public int DeleteById(int partyId)
         {

@@ -37,5 +37,10 @@ namespace MHGoldenJuteApp.BLL
         {
             return aItemAccess.DeleteById(ItemId);
         }
+
+        public List<ItemGroup>GetAllItemGroup()
+        {
+            return aItemAccess.GetAllItemGroup();
+        }
     }
 }

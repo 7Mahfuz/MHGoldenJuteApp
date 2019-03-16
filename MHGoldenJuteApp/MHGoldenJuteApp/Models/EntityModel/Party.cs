@@ -7,7 +7,7 @@ namespace MHGoldenJuteApp.Models
 {
     public class Party
     {
-        public int PartyId { get; set; }
+        public Int64 PartyId { get; set; }
         public string PartyType { get; set; }
         public string PartyName { get; set; }
         public string ContactPerson { get; set; }

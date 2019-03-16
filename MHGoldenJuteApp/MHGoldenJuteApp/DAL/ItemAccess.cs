@@ -46,7 +46,7 @@ namespace MHGoldenJuteApp.DAL
             while (Reader.Read())
             {
                 Item aItem=new Item();
-                aItem.ItemId = (int)Reader["ItemId"];
+                aItem.ItemId = (Int64)Reader["ItemId"];
                 aItem.ItemGroupId = (int)Reader["ItemGroupId"];
                 aItem.ItemCode = Reader["ItemCode"].ToString();
                 aItem.ItemName = Reader["ItemName"].ToString();
@@ -77,8 +77,8 @@ namespace MHGoldenJuteApp.DAL
             Reader = Command.ExecuteReader();
             while (Reader.Read())
             {
-                aItem.ItemId = (int)Reader["ItemId"];
-                aItem.ItemGroupId = (int)Reader["ItemGroupId"];
+                aItem.ItemId = (Int64)Reader["ItemId"];
+                aItem.ItemGroupId = (Int64)Reader["ItemGroupId"];
                 aItem.ItemCode = Reader["ItemCode"].ToString();
                 aItem.ItemName = Reader["ItemName"].ToString();
                 aItem.Department = Reader["Department"].ToString();
@@ -101,7 +101,7 @@ namespace MHGoldenJuteApp.DAL
             Connection.Open();
             try
             {
-                Query = "Update Item set ItemGroupId='@ItemGroupId',ItemCode='@ItemCode',ItemName='@ItemName',Department='@Department',Unit='@Unit',SalesPrice='@SalesPrice',ReOrderLevel='@ReOderlvl',ReOrderLevel='@ReOrderQnt',ItemType='@ItemType',ImageUrl='@ImgUrl')";
+                Query = "Update Item set ItemGroupId='@ItemGroupId',ItemCode='@ItemCode',ItemName='@ItemName',Department='@Department',Unit='@Unit',SalesPrice='@SalesPrice',ReOrderLevel='@ReOderlvl',ReOrderQuantity='@ReOrderQnt',ItemType='@ItemType',ImageUrl='@ImgUrl')";
                 Command = new SqlCommand(Query, Connection);
                 Command.Parameters.Clear();
                 Command.Parameters.AddWithValue("ItemName", aItem.ItemGroupId);
@@ -138,6 +138,28 @@ namespace MHGoldenJuteApp.DAL
 
             Connection.Close();
             return RowCount;
+        }
+
+
+        public List<ItemGroup>GetAllItemGroup()
+        {
+            List<ItemGroup> listOfItemGroup = new List<ItemGroup>();
+            Connection.Open();
+            Query = "Select * from ItemGroup order by ItemGroupId";
+            Command = new SqlCommand(Query, Connection);
+            Reader = Command.ExecuteReader();
+            while (Reader.Read())
+            {
+                ItemGroup aItemGroup = new ItemGroup();
+                aItemGroup.ItemGroupId = (Int64)Reader["ItemGroupId"];
+                aItemGroup.ItemGroupName = Reader["ItemGroupName"].ToString();
+
+                listOfItemGroup.Add(aItemGroup);
+
+            }
+            Reader.Close();
+            Connection.Close();
+            return listOfItemGroup;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MHGoldenJuteApp.Models
 {
     public class ItemGroup
     {
-        public int ItemGroupId { get; set; }
+        public Int64 ItemGroupId { get; set; }
         public string ItemGroupName { get; set; }
     }
 }
