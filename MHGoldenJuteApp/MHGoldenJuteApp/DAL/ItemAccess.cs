@@ -7,8 +7,8 @@ using System.Data.SqlClient;
 
 namespace MHGoldenJuteApp.DAL
 {
-    public class ItemAccesss:SQL
-    {        
+    public class ItemAccess:SQL
+    {   
         public int Save(Item aItem)
         {
             Connection.Open();
@@ -115,6 +115,23 @@ namespace MHGoldenJuteApp.DAL
                 Command.Parameters.AddWithValue("ItemType", aItem.ItemType);
                 Command.Parameters.AddWithValue("ImgUrl", aItem.ImageUrl);
 
+                RowCount = Command.ExecuteNonQuery();
+            }
+            catch { RowCount = 2; }
+
+            Connection.Close();
+            return RowCount;
+        }
+
+        public int DeleteById(int itemId)
+        {
+            Connection.Open();
+            try
+            {
+                Query = "Delete from Item where ItemId=@ItemId";
+                Command = new SqlCommand(Query, Connection);
+                Command.Parameters.Clear();
+                Command.Parameters.AddWithValue("ItemId", itemId);
                 RowCount = Command.ExecuteNonQuery();
             }
             catch { RowCount = 2; }
