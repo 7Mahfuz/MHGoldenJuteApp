@@ -65,7 +65,7 @@ namespace MHGoldenJuteApp.DAL
             return listOfItem;
         }
 
-        public Item GetAItemById(int itemId)
+        public Item GetAItemById(Int64 itemId)
         {
             Connection.Open();
             Item aItem = new Item();

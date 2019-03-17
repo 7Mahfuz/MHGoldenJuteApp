@@ -8,17 +8,16 @@ namespace MHGoldenJuteApp.Models
     public class Purchase
     {
         public Int64 PurchaseID { get; set; }
-        public string PurchaseIdCode { get; set; }
-        public DateTime PurcahseDate { get; set; }
+        public string PurchaseInvoiceNo { get; set; }
+        public DateTime PurcahseDateTime { get; set; }
         public Int64 SupplierId { get; set; }
-        public string Products { get; set; }
+        public string Remarks { get; set; }
         public double TotalAmount { get; set; }
-        public string BillNo { get; set; }
-        public int MyProperty { get; set; }
-        public Int64 PurchaseByUSerId { get; set; }
+        public string ChalanNo { get; set; }
+          public Int64 PurchaseByUserId { get; set; }
         public Int64 PurchaseApproveUserId { get; set; }
-        public DateTime PurchaseApproveDate { get; set; }
+        public DateTime PurchaseApproveDateTime { get; set; }
         public string IsApproved { get; set; }
-        public string MmoNo { get; set; }
+        public string MrNo { get; set; }
     }
 }
